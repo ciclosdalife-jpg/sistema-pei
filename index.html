@@ -36,17 +36,14 @@
   <p id="msg">Buscando servidor...</p>
 
   <script>
-    const BIN_ID  = '69bbde5db7ec241ddc81b1ad';
-    const API_KEY = '$2a$10$r.sv5DdRtgeBQj79/TAKb.CPHWQI69oDg1O3kE2ml68edZx.0OhQu';
+    const BIN_ID = 'cd89c5a014520aa8c40c';
 
     async function redirecionar() {
       try {
-        const res = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}/latest`, {
-          headers: { 'X-Master-Key': API_KEY }
-        });
+        const res = await fetch(`https://api.npoint.io/${BIN_ID}`);
         if (!res.ok) throw new Error('Falha ao buscar URL');
         const data = await res.json();
-        const url  = data.record.url;
+        const url  = data.url;
         if (!url || !url.startsWith('https://')) throw new Error('URL inválida');
         document.getElementById('msg').textContent = 'Conectando ao servidor...';
         window.location.href = url;
