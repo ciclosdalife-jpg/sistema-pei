@@ -36,11 +36,11 @@
   <p id="msg">Buscando servidor...</p>
 
   <script>
-    const STORAGE_ID = 'fd49b41c-1fd9-454a-972b-73ef22752997';
+    const GET_URL = 'https://api.jsonstorage.net/v1/json/42fa78b1-6a92-4189-8dd7-27f25db9fc5e/28b092b4-f75a-4c35-bcdb-b7637d6a3470';
 
     async function redirecionar() {
       try {
-        const res = await fetch(`https://api.jsonstorage.net/v1/json/${STORAGE_ID}`);
+        const res = await fetch(GET_URL);
         if (!res.ok) throw new Error('Falha ao buscar URL');
         const data = await res.json();
         const url  = data.url;
