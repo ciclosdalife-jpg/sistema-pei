@@ -36,14 +36,17 @@
   <p id="msg">Buscando servidor...</p>
 
   <script>
-    const GET_URL = 'https://api.jsonstorage.net/v1/json/42fa78b1-6a92-4189-8dd7-27f25db9fc5e/54961df4-9834-48c3-8a13-6cde019859be';
+    const BIN_ID  = '69bbde5db7ec241ddc81b1ad';
+    const API_KEY = '$2a$10$r.sv5DdRtgeBQj79/TAKb.CPHWQI69oDg1O3kE2ml68edZx.0OhQu';
 
     async function redirecionar() {
       try {
-        const res = await fetch(GET_URL);
+        const res = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}/latest`, {
+          headers: { 'X-Master-Key': API_KEY }
+        });
         if (!res.ok) throw new Error('Falha ao buscar URL');
         const data = await res.json();
-        const url  = data.url;
+        const url  = data.record.url;
         if (!url || !url.startsWith('https://')) throw new Error('URL inválida');
         document.getElementById('msg').textContent = 'Conectando ao servidor...';
         window.location.href = url;
