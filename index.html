@@ -36,14 +36,14 @@
   <p id="msg">Buscando servidor...</p>
 
   <script>
-    const BIN_ID = '8zeOcmXiU6';
-
     async function redirecionar() {
       try {
-        const res = await fetch(`https://jsonbin-zeta.vercel.app/api/bins/${BIN_ID}`);
+        const res = await fetch(
+          'https://raw.githubusercontent.com/ciclosdalife-jpg/sistema-pei/main/url.json?t=' + Date.now()
+        );
         if (!res.ok) throw new Error('Falha ao buscar URL');
         const data = await res.json();
-        const url  = data.data.url;
+        const url  = data.url;
         if (!url || !url.startsWith('https://')) throw new Error('URL inválida');
         document.getElementById('msg').textContent = 'Conectando ao servidor...';
         window.location.href = url;
